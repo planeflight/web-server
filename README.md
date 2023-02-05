@@ -1,6 +1,6 @@
 # Minimalistic Web Server in C++
 
-libGDX is licensed under MIT the MIT Licence. All uses of this software must maintain this Licence. See LICENCE for more details.
+This is licensed under MIT the MIT Licence. All uses of this software must maintain this Licence. See LICENCE for more details.
 
 ## Requirements
 - GNU Make
