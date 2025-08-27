@@ -1,15 +1,17 @@
-# Minimalistic Web Server in C++
-
-This is licensed under MIT the MIT Licence. All uses of this software must maintain this Licence. See LICENCE for more details.
+# Web Server
 
 ## Requirements
+
 - GNU Make
 - C++ 20
 
 ## Building
-- Clone: ```git clone https://github.com/eipiequals-1/web-server```
-- Build: ```make``` or ```make -j 8``` depending on the number of cores available.
-- Run: ```./bin/web_server```
+
+- Clone: `git clone https://github.com/eipiequals-1/web-server`
+- Build: `make` or `make` depending on the number of cores available.
+- Run: `./bin/web_server`
 
 ## Getting Started
+
+- Go to localhost:8080/index for a routing example
 - View web-server/main.cpp for a workflow overview!

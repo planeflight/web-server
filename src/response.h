@@ -1,8 +1,9 @@
-#ifndef WEBSERVER_RESPONSE_H
-#define WEBSERVER_RESPONSE_H
+#ifndef RESPONSE_H
+#define RESPONSE_H
+
+#include <string.h>
 
 #include <functional>
-#include <string.h>
 #include <string>
 #include <vector>
 
@@ -23,14 +24,12 @@ inline void set_static_path(const std::string &path) {
 
 std::string read_file(const std::string &file);
 
-enum type {
-    resource = 0,
-    route = 1
-};
+enum type { resource = 0, route = 1 };
 
 /**
  * @param str the path to parse
- * @returns if the route path wants direct access to a resource, or if it wants to call a callback (ie a route)
+ * @returns if the route path wants direct access to a resource, or if it wants
+ * to call a callback (ie a route)
  */
 inline type parse_route_path(const std::string &str) {
     // if there is a . in the path, it must be a resource
@@ -44,4 +43,4 @@ inline type parse_route_path(const std::string &str) {
 
 } // namespace http::response
 
-#endif // WEBSERVER_RESPONSE_H
+#endif // RESPONSE_H

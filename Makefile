@@ -5,7 +5,7 @@ PROFILE_FLAGS= -pg
 LDFLAGS = -g
 INCLUDE = -I.
 
-SRC = ${wildcard *.cpp} ${wildcard web_server/*.cpp} ${wildcard web_server/**/*.cpp}
+SRC = src/main.cpp src/response.cpp src/server.cpp
 OBJ = $(patsubst %.cpp, $(BIN)/%.o, $(SRC)) 
 
 BIN = bin

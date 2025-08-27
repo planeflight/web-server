@@ -1,5 +1,5 @@
-#ifndef WEBSERVER_REQUEST_H
-#define WEBSERVER_REQUEST_H
+#ifndef REQUEST_H
+#define REQUEST_H
 
 #include <string.h>
 
@@ -38,4 +38,4 @@ inline void parse(char *req, std::string &http_method, std::string &route) {
 
 } // namespace http::request
 
-#endif // WEBSERVER_REQUEST_H
+#endif // REQUEST_H

@@ -1,4 +1,4 @@
-#include "web_server/response.h"
+#include "response.h"
 
 #include <fstream>
 #include <iostream>
@@ -30,4 +30,4 @@ std::string read_file(const std::string &file) {
     return stream.str();
 }
 
-} // namespace http
+} // namespace http::response

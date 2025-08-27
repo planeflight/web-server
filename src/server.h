@@ -1,12 +1,12 @@
-#ifndef WEBSERVER_SERVER_H
-#define WEBSERVER_SERVER_H
+#ifndef SERVER_H
+#define SERVER_H
 
 #include <cstdint>
 #include <functional>
 #include <string>
 #include <unordered_map>
 
-#include "web_server/response.h"
+#include "response.h"
 
 namespace http {
 
@@ -20,8 +20,12 @@ class Server {
     void add_route(const std::string &route, const response::Response &res);
 
   private:
-    void send_route(int client, const std::string &method, const std::string &route);
-    void send_resource(int client, const std::string &method, const std::string &resource);
+    void send_route(int client,
+                    const std::string &method,
+                    const std::string &route);
+    void send_resource(int client,
+                       const std::string &method,
+                       const std::string &resource);
 
     bool running = true;
 
@@ -35,4 +39,4 @@ class Server {
 
 } // namespace http
 
-#endif // WEBSERVER_SERVER_H
+#endif // SERVER_H

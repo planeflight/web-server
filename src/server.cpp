@@ -1,15 +1,15 @@
-#include "web_server/server.h"
-
-#include <iostream>
-#include <sstream>
+#include "server.h"
 
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "web_server/request.h"
-#include "web_server/response.h"
+#include <iostream>
+#include <sstream>
+
+#include "request.h"
+#include "response.h"
 
 namespace http {
 
@@ -24,7 +24,8 @@ Server::Server(uint32_t port) : port(port) {
 
     sockaddr_in server_address;
     server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(this->port); // store the port in network byte order
+    server_address.sin_port =
+        htons(this->port); // store the port in network byte order
     server_address.sin_addr.s_addr = htons(INADDR_ANY);
 
     // bind socket
@@ -45,12 +46,10 @@ Server::Server(uint32_t port) : port(port) {
     std::cout << "HTTP Server is listening on port: " << port << "\n";
 }
 
-Server::~Server() {
-}
+Server::~Server() {}
 
 void Server::run() {
-    if (!running)
-        return;
+    if (!running) return;
     std::cout << "Server is running!\n";
 
     // store the request data in message
@@ -83,12 +82,14 @@ void Server::run() {
     delete[] message;
 }
 
-void Server::add_route(const std::string &route, const response::Response &res) {
+void Server::add_route(const std::string &route,
+                       const response::Response &res) {
     routes[route] = res;
 }
 
-void Server::send_route(int client, const std::string &method, const std::string &route) {
-
+void Server::send_route(int client,
+                        const std::string &method,
+                        const std::string &route) {
     // get the Response
     response::Response response = nullptr;
     for (auto &pair : routes) {
@@ -107,21 +108,21 @@ void Server::send_route(int client, const std::string &method, const std::string
     }
 
     std::stringstream response_stream;
-    response_stream << "HTTP/1.1 200 OK\r\n\r\n"
-                    << response_str << "\r\n\r\n";
+    response_stream << "HTTP/1.1 200 OK\r\n\r\n" << response_str << "\r\n\r\n";
     std::string out = response_stream.str();
 
     send(client, out.c_str(), out.size(), 0);
 }
 
-void Server::send_resource(int client, const std::string &method, const std::string &resource) {
+void Server::send_resource(int client,
+                           const std::string &method,
+                           const std::string &resource) {
     (void)method;
 
     std::string response = http::response::read_file(resource);
 
     std::stringstream response_stream;
-    response_stream << "HTTP/1.1 200 OK\r\n\r\n"
-                    << response << "\r\n\r\n";
+    response_stream << "HTTP/1.1 200 OK\r\n\r\n" << response << "\r\n\r\n";
     std::string out = response_stream.str();
 
     send(client, out.c_str(), out.size(), 0);
